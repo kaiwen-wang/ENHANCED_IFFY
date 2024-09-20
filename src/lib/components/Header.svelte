@@ -25,7 +25,7 @@
         </p>
     </div>
 
-    <nav class="flex items-center">
+    <nav class="flex items-center *:truncate w-fit">
         <a
             href="/"
             class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"

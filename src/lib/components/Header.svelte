@@ -2,7 +2,7 @@
     import { page } from "$app/stores";
 </script>
 
-<div class="grid grid-cols-12 gap-16 mb-8">
+<div class="mb-5 items-center h-12 gap-4 relative">
     <svg
         class="col-span-1"
         width="42"
@@ -17,8 +17,10 @@
         ></path>
     </svg>
 
-    <div
-        class="col-span-11 flex justify-end gap-4 w-fit *:hover:bg-neutral-100 *:px-4 *:py-2 *:rounded-xl"
+    <p class="text-[#777777] leading-none ">Content moderation in 1 line of code</p>
+
+    <nav
+        class=" absolute top-0 inset-x-0 h-full flex items-center justify-end gap-4 *:hover:bg-neutral-100 *:px-4 *:py-2 *:rounded-xl"
     >
         <a href="/" class:bg-neutral-100={$page.url.pathname === "/"}
             >Examples</a
@@ -28,5 +30,5 @@
             class:bg-neutral-100={$page.url.pathname === "/moderation-log"}
             >Moderation Log</a
         >
-    </div>
+    </nav>
 </div>

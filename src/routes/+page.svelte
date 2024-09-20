@@ -6,6 +6,8 @@
 	let copyButtonText = "Copy";
 	let isCopyDisabled = false;
 
+	let copyLineText = "Copy/paste this into your Terminal to give it a shot!";
+
 	function setActiveTab(tab) {
 		activeTab = tab;
 		isCopyDisabled = tab === codeExamples.length;
@@ -20,8 +22,12 @@
 			.writeText(currentCode)
 			.then(() => {
 				copyButtonText = "Copied!";
+				copyLineText =
+					"Copied to clipboard! Now paste into your Terminal!";
 				setTimeout(() => {
 					copyButtonText = "Copy";
+					copyLineText =
+						"Copy/paste this into your Terminal to give it a shot!";
 				}, 500);
 
 				// Move to next tab if not the last one
@@ -93,30 +99,46 @@
 	];
 </script>
 
-<div class="pt-3">
+<div class="pt-8">
 	<Header />
 
 	<div class="grid grid-cols-12 gap-8">
 		<section class="col-span-12 relative">
-			<p class="absolute top-0 right-0  flex items-center gap-1 mt-3.5  ">
-				Copy/paste this into your Terminal to give it a shot!
+			<div class="flex items-end gap-4">
+				<div
+					class="flex *:px-8 divide-x divide-black border-l border-r border-t w-fit border-black"
+				>
+					{#each [1, 2, 3] as tab}
+						<button
+							class="py-2 transition-colors duration-200 ease-in-out"
+							class:bg-black={activeTab === tab}
+							class:text-white={activeTab === tab}
+							on:click={() => setActiveTab(tab)}
+						>
+							{tab}
+						</button>
+					{/each}
+				</div>
 
-				<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.85355 2.14645C3.65829 1.95118 3.34171 1.95118 3.14645 2.14645C2.95118 2.34171 2.95118 2.65829 3.14645 2.85355L7.14645 6.85355C7.34171 7.04882 7.65829 7.04882 7.85355 6.85355L11.8536 2.85355C12.0488 2.65829 12.0488 2.34171 11.8536 2.14645C11.6583 1.95118 11.3417 1.95118 11.1464 2.14645L7.5 5.79289L3.85355 2.14645ZM3.85355 8.14645C3.65829 7.95118 3.34171 7.95118 3.14645 8.14645C2.95118 8.34171 2.95118 8.65829 3.14645 8.85355L7.14645 12.8536C7.34171 13.0488 7.65829 13.0488 7.85355 12.8536L11.8536 8.85355C12.0488 8.65829 12.0488 8.34171 11.8536 8.14645C11.6583 7.95118 11.3417 7.95118 11.1464 8.14645L7.5 11.7929L3.85355 8.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-			</p>
+				<p
+					class="ml-auto flex items-center gap-1 h-full mb-0.5 truncate"
+				>
+					Copy/paste this into your Terminal to give it a shot!
 
-			<div
-				class="flex *:px-8 divide-x divide-black border-l border-r border-t w-fit border-black"
-			>
-				{#each [1, 2, 3] as tab}
-					<button
-						class="py-2 transition-colors duration-200 ease-in-out"
-						class:bg-black={activeTab === tab}
-						class:text-white={activeTab === tab}
-						on:click={() => setActiveTab(tab)}
+					<svg
+						width="15"
+						height="15"
+						viewBox="0 0 15 15"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						><path
+							d="M3.85355 2.14645C3.65829 1.95118 3.34171 1.95118 3.14645 2.14645C2.95118 2.34171 2.95118 2.65829 3.14645 2.85355L7.14645 6.85355C7.34171 7.04882 7.65829 7.04882 7.85355 6.85355L11.8536 2.85355C12.0488 2.65829 12.0488 2.34171 11.8536 2.14645C11.6583 1.95118 11.3417 1.95118 11.1464 2.14645L7.5 5.79289L3.85355 2.14645ZM3.85355 8.14645C3.65829 7.95118 3.34171 7.95118 3.14645 8.14645C2.95118 8.34171 2.95118 8.65829 3.14645 8.85355L7.14645 12.8536C7.34171 13.0488 7.65829 13.0488 7.85355 12.8536L11.8536 8.85355C12.0488 8.65829 12.0488 8.34171 11.8536 8.14645C11.6583 7.95118 11.3417 7.95118 11.1464 8.14645L7.5 11.7929L3.85355 8.14645Z"
+							fill="currentColor"
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+						></path></svg
 					>
-						{tab}
-					</button>
-				{/each}
+				</p>
 			</div>
 
 			{#each codeExamples as example, index}
@@ -154,40 +176,3 @@
 		</section>
 	</div>
 </div>
-
-<a
-	target="_blank"
-	rel="noreferrer"
-	href="https://gumroad.com/"
-	class="fixed bottom-0 right-0 bg-[rgb(240,150,227)] flex gap-1.5 py-2 px-2.5 rounded-full border-2 border-black mr-2 mb-2 shadow-md
-	
-	hover:-translate-y-1
-	 transition-all
-	ease-in
-	group
-	 "
->
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		class=""
-		fill="none"
-		height="24"
-		width="24"
-		viewBox="90.295 93.404 330.706 320.703"
-		><path
-			d="m278.037 414.107c78.957 0 142.964-61.788 142.964-138.008s-64.007-138.009-142.964-138.009-142.965 61.789-142.965 138.009 64.008 138.008 142.965 138.008z"
-			fill="#000"
-		/><path
-			d="m241.141 385.186c83.044 0 150.846-65.055 150.846-145.891 0-80.835-67.802-145.891-150.846-145.891-83.043 0-150.846 65.056-150.846 145.891 0 80.836 67.803 145.891 150.846 145.891z"
-			fill="#ff90e8"
-			stroke="#000"
-			stroke-width="1.563"
-		/><path
-			d="m229.795 312.898c-42.217 0-67.05-34.11-67.05-76.54 0-44.095 27.316-79.869 79.465-79.869 53.806 0 72.016 36.607 72.844 57.405h-38.905c-.827-11.647-10.761-29.118-34.766-29.118-25.66 0-42.216 22.463-42.216 49.918s16.556 49.917 42.216 49.917c23.178 0 33.111-18.303 37.25-36.605h-37.25v-14.976h78.162v76.54h-34.29v-48.254c-2.484 17.472-13.245 51.582-55.46 51.582z"
-			fill="#000"
-		/></svg
-	>
-	<div class="leading-none flex items-center group-hover:underline">
-		By Gumroad
-	</div>
-</a>
